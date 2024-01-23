@@ -16,7 +16,7 @@
         class="flex items-center cursor-pointer gap-3 text-gray-500 hover:text-black"
       >
         <img src="/cart.svg" alt="Cart" />
-        <b>1500 руб.</b>
+        <b>2000 руб.</b>
       </li>
 
       <li
