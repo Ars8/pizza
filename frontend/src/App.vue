@@ -1,35 +1,29 @@
-<template>
-  <div class="p-10 bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14">
-    <Header />
-    <Comp :items="items" />
-  </div>
-</template>
-
 <script setup>
-import { ref, onMounted } from "vue";
-import axios from "axios";
-import Comp from "@/components/Comp.vue";
+import { ref, provide } from "vue";
+import Home from "@/pages/Home.vue";
 import Header from "@/components/Header.vue";
 
-const items = ref([]);
+const cart = ref([]);
 
-const fetchItems = async () => {
-  try {
-    const { data } = await axios.get(`http://127.0.0.1:8000/api/pizza`);
-
-    items.value = data.map((obj) => ({
-      ...obj,
-      isFavorite: false,
-      favoriteId: null,
-      isAdded: false,
-    }));
-    console.log(items.value);
-  } catch (err) {
-    console.log(err);
-  }
+const addToCart = (item) => {
+  cart.value.push(item);
+  item.isAdded = true;
+  console.log(cart.value);
 };
-
-onMounted(async () => {
-  await fetchItems();
+const removeFromCart = (item) => {
+  cart.value.splice(cart.value.indexOf(item), 1);
+  item.isAdded = false;
+};
+provide("cart", {
+  addToCart,
+  removeFromCart,
 });
 </script>
+
+<template>
+  <Drawer v-if="drawerOpen" :total-price="totalPrice" :vat-price="vatPrice" />
+  <div class="p-10 bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14">
+    <Header />
+    <Home />
+  </div>
+</template>
