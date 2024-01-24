@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FavoritePizzaResourceController;
 use App\Http\Controllers\PizzaResourceController;
 use App\Http\Controllers\UserResourceController;
 use Illuminate\Http\Request;
@@ -25,3 +26,5 @@ Route::resource('users', UserResourceController::class)
 
 Route::resource('pizza', PizzaResourceController::class)
 ->only(['index']);
+
+Route::post('favorites', [FavoritePizzaResourceController::class, 'store']);
