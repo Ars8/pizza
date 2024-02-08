@@ -43,7 +43,7 @@ defineProps({
         <li
           class="flex-1 text-center rounded-2xl text-xs mx-1 my-0 px-4 py-1 cursor-pointer"
         >
-          20 см
+          25 см
         </li>
         <li
           class="flex-1 text-center bg-slate-300 rounded-2xl text-xs mx-1 my-0 px-4 py-1 cursor-pointer"
